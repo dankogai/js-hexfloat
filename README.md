@@ -24,6 +24,14 @@ Unlike `parseInt` and `parseFloat`, the number must be prepended with '0x' and e
 
 also available as `Number.parseHexFloat()`.
 
+### `RE_HEXFLOAT`
+
+`RegExp` object used in `parseHexFloat`:
+
+````javascript
+/([\+\-]?)0x([0-9A-F]+).?([0-9A-F]*)p([\+\-]?[0-9]*)/i
+````
+
 ### `Number.prototype.toHexString(canonical)`
 
 Stringifies the number as a C99 hexadecimal notation.  Analogous to `"%a"` in C99 `sprintf()`. 
