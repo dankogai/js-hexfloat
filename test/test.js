@@ -1,5 +1,5 @@
 /*
- * $Id: test.js,v 0.1 2016/01/04 11:51:34 dankogai Exp dankogai $
+ * $Id: test.js,v 0.2 2016/01/04 17:52:54 dankogai Exp dankogai $
  *
  * use mocha to test me
  * http://visionmedia.github.com/mocha/
@@ -41,4 +41,12 @@ describe('Hexadecimal Float', function () {
         is(parseHexFloat('-0x1p-42'), -Math.pow(2, -42)));
     it('isNaN(parseHexFloat("nonsense"))',
        is(isNaN(parseHexFloat('nonsense')), true));
+    it('0x1p-1074 == Number.MIN_VALUE',
+       is(parseHexFloat('0x1p-1074'), Number.MIN_VALUE));
+    it('Number.MIN_VALUE.toHexString()',
+       is(Number.MIN_VALUE.toHexString(), '0x1p-1074'));
+    it('0x1.fffffffffffffp+1023 == Number.MAX_VALUE',
+       is(parseHexFloat('0x1.fffffffffffffp+1023'), Number.MAX_VALUE));
+    it('Number.MAX_VALUE.toHexString()',
+       is(Number.MAX_VALUE.toHexString(), '0x1.fffffffffffffp+1023'));
 });
