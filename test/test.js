@@ -17,6 +17,8 @@ var is = function (a, e, m) {
     }
 };
 
+var dead_beef = 57005.7458343505859375;
+
 describe('Hexadecimal Float', function () {
     it('Math.PI == 0x1.921fb54442d18p+1',
        is(G.parseHexFloat('0x1.921fb54442d18p+1'), Math.PI));
@@ -30,12 +32,14 @@ describe('Hexadecimal Float', function () {
        is(G.parseHexFloat('-0xa.df85458a2bb4a9bp-2'), -Math.E));
     it('parseHexFloat(Math.E.toHexString()) == Math.E',
        is(G.parseHexFloat(Math.E.toHexString()), Math.E));
-    it('0xdead.beefp0 == 57005.7458343505859375',
-       is(G.parseHexFloat('0xdead.beefp0'), 57005.7458343505859375));
-    it('57005.7458343505859375 == 0xdead.beefp0',
-       is((57005.7458343505859375).toHexString(), '0xdead.beefp0'));
-    it('(57005.7458343505859375).toHexString(true)',
-       is((57005.7458343505859375).toHexString(true), '0x1.bd5b7ddep+15'));
+    it('0xdead.beefp0 == '+dead_beef,
+       is(G.parseHexFloat('0xdead.beefp0'), dead_beef));
+    it('dead_beef == 0xdead.beefp0',
+       is((dead_beef).toHexString(), '0xdead.beefp0'));
+    it('('+dead_beef+').toHexString(true) == 0x1.bd5b7ddep+15',
+       is((dead_beef).toHexString(true), '0x1.bd5b7ddep+15'));
+    it('(1/'+dead_beef+')toHexString(true) == 0x1.264eb565bf921p-16',
+       is((1/dead_beef).toHexString(true), '0x1.264eb565bf921p-16'));
     it('0xdead.beefp0 == 0x1.bd5b7ddep+15',
        is(G.parseHexFloat('0xdead.beefp0'),
           G.parseHexFloat('0x1.bd5b7ddep+15')));
