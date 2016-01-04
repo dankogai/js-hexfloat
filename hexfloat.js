@@ -9,17 +9,15 @@
     if (! Object.defineProperty) {
         throw Error("Object.defineProperty missing");
     }
+    var RE_HEXFLOAT =
+        /([\+\-]?)0x([0-9A-F]+).?([0-9A-F]*)p([\+\-]?[0-9]*)/i;
+    //   1          2            3           4
     var parseHexFloat = function(s) {
-        //      1          2           3           4        5
-        var m =
-            (/^([\+\-]?)0x([0-9A-Z]+).?([0-9A-Z]*)p([\+\-]?)([0-9]*)/i)
-            .exec(s);
+        var m = RE_HEXFLOAT.exec(s);
         if (!m) return NaN;
-        var sign = m[1] == '-' ? -1 : 1;
-        var mantissa = parseInt(m[2] + m[3], 16);
-        var esign = m[4] == '-' ? -1 : 1;
-        var exponent = esign * (m[5]|0) - 4*m[3].length;
-         return sign * mantissa * Math.pow(2, exponent);
+        var mantissa = parseInt(m[1] + m[2] + m[3], 16);
+        var exponent = (m[4]|0) - 4*m[3].length;
+        return mantissa * Math.pow(2, exponent);
     };
     var toHexString = function(canonical) {
         var sign = this < 0 ? '-' : '';
@@ -41,6 +39,7 @@
     [
         [ global, 'parseHexFloat', parseHexFloat],
         [ Number, 'parseHexFloat', parseHexFloat],
+        [ global, 'RE_HEXFLOAT',   RE_HEXFLOAT],
         [ Number.prototype, 'toHexString', toHexString ]
     ].forEach(function(a){
         var o = a[0], k = a[1], v = a[2];
