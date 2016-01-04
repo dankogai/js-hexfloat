@@ -8,7 +8,7 @@ Rudimentary C99 Hexadecimal Float Support in JS
 
 ````javascript
 var pi = parseHexFloat('0x1.921fb54442d18p+1'); // 3.14159265358982
-var piHex = Math.PI.toHexString();              // '0x3.243f6a8885a3p0'
+var piHex = Math.PI.toHexString();              // '0x1.921fb54442d18p+1'
 parseHexFloat(piHex) == Math.PI;                // true
 ````
 
