@@ -1,0 +1,30 @@
+{
+  "name": "js-hexfloat",
+  "version": "0.1.0",
+  "description": "Rudimentary C99 Hexadecimal Float Support in JS",
+  "main": "hexfloat.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+      "mocha": "*"
+   },
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dankogai/js-hexfloat.git"
+  },
+  "keywords": [
+    "C99",
+    "Hexadecimal",
+    "Float"
+  ],
+  "author": "Dan Kogai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dankogai/js-hexfloat/issues"
+  },
+  "homepage": "https://github.com/dankogai/js-hexfloat#readme"
+}

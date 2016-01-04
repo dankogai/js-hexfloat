@@ -1,10 +1,9 @@
 /*
- * $Id: test.js,v 0.1 2016/01/04 09:17:08 dankogai Exp dankogai $
+ * $Id: test.js,v 0.1 2016/01/04 11:51:34 dankogai Exp dankogai $
  *
  * use mocha to test me
  * http://visionmedia.github.com/mocha/
  */
-var assert, G;
 if (this['window'] !== this) {
     assert = require("assert");
     parseHexFloat = require('../hexfloat.js').parseHexFloat;
