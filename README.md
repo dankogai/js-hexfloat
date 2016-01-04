@@ -32,26 +32,34 @@ also available as `Number.parseHexFloat()`.
 /([\+\-]?)0x([0-9A-F]+).?([0-9A-F]*)p([\+\-]?[0-9]*)/i
 ````
 
-### `Number.prototype.toHexString(canonical)`
+### `Number.prototype.toHexString()`
 
-Stringifies the number as a C99 hexadecimal notation.  Analogous to `"%a"` in C99 `sprintf()`. 
+Stringifies the number as a C99 hexadecimal notation like `"%a"` in C99 `sprintf()`. 
 
-#### CAVEAT
+#### Why Canonical Form?
 
-Unless `canonical` is `true`, the result is not canonical.  Canonically the first digit of the number is always `1` and the sign of the exponent is never omitted.
-
-````C
-printf("%a\n", -57005.7458343505859375); // prints -0x1.bd5b7ddep+15
-````
-
-On the other hand, this implementation takes  advangage of the fact `Number.prototype.toString(16)` works for floating point numbers.  It just checks the number is negative and prepends '-' if so, then prepend '0x', and append 'p0'.
+From version 0.3.0, `.toHexString()` always returns the canonical notation.
 
 ````javascript
-console.log((-57005.7458343505859375).toHexString());     // -0xdead.beefp0
-console.log((-57005.7458343505859375).toHexString(true)); // -0x1.bd5b7ddep+15
+Math.PI.toString(16);   // 3.243f6a8885a3 -> 0x3.243f6a8885a3p0 is valid yet uncanonical
+Math.PI.toHexString();  // 0x1.921fb54442d18p+1 is valid and canonical
 ````
 
-Even when not canonical, you can use the result interchangeably with C99 and other platforms that support the notation (C++11, Ruby, Perl 5.22 ...).
+It seems ok to just prepend '0x' and append 'p0' to `.toString(16)` to make a hex float.  Turns out it isn't.  It sometimes drops the last bit in some platforms.
+
+````
+Math.log(2).toString(16)  // 0.b17217f7d1cf78
+Math.log(2).toHexString() // 0x1.62e42fefa39efp-1
+````
+
+````shell
+% perl -E 'say 0x0.b17217f7d1cf78p0 - 0x1.62e42fefa39efp-1'
+-1.11022302462516e-16
+% perl -E 'say sprintf "%a", 0x0.b17217f7d1cf78p0 - 0x1.62e42fefa39efp-1'
+-0x1p-53
+````
+
+And `abs(-0x1p-53)` is `DBL_EPSILON`.
 
 ## SEE ALSO
 
