@@ -16,21 +16,21 @@ parseHexFloat(piHex) == Math.PI;                // true
 
 This script adds the following:
 
-### `parseHexFloat(str)`
+### `parseHexFloat(theString)`
 
-Parses C99 hexadecimal floating point in `str`.  Returns `NaN` if fails.
+Parses C99 hexadecimal floating point in `theString`.  Returns `NaN` if fails.
 
 Unlike `parseInt` and `parseFloat`, the number must be prepended with '0x' and ended with 'p' and exponent in decimal number.
 
 also available as `Number.parseHexFloat()`.
 
-### `Number.prototype.toHexString()`
+### `Number.prototype.toHexString(canonical)`
 
 Stringifies the number as a C99 hexadecimal notation.  Analogous to `"%a"` in C99 `sprintf()`. 
 
 #### CAVEAT
 
-The result is not canonical.  In canonical form the number of digit above the floating point is always one.
+Unless `canonical` is `true`, the result is not canonical.  Canonically the first digit of the number is always `1` and the sign of the exponent is never omitted.
 
 ````C
 printf("%a\n", -57005.7458343505859375); // prints -0x1.bd5b7ddep+15
@@ -39,10 +39,11 @@ printf("%a\n", -57005.7458343505859375); // prints -0x1.bd5b7ddep+15
 On the other hand, this implementation takes  advangage of the fact `Number.prototype.toString(16)` works for floating point numbers.  It just checks the number is negative and prepends '-' if so, then prepend '0x', and append 'p0'.
 
 ````javascript
-console.log((-57005.7458343505859375).toHexString()) // prints -0xdead.beefp0
+console.log((-57005.7458343505859375).toHexString());     // -0xdead.beefp0
+console.log((-57005.7458343505859375).toHexString(true)); // -0x1.bd5b7ddep+15
 ````
 
-Though not canonical, you can use the result interchangeably with C99 and other platforms that support the notation (C++11, Ruby, Perl 5.22 ...).
+Even when not canonical, you can use the result interchangeably with C99 and other platforms that support the notation (C++11, Ruby, Perl 5.22 ...).
 
 ## SEE ALSO
 
