@@ -10,8 +10,8 @@
         throw Error("Object.defineProperty missing");
     }
     var RE_HEXFLOAT =
-        /([\+\-]?)0x([0-9A-F]+).?([0-9A-F]*)p([\+\-]?[0-9]*)/i;
-    //   1          2            3           4
+        /([\+\-]?)0x([0-9A-F]+)\.?([0-9A-F]*)p([\+\-]?[0-9]*)/i;
+    //   1          2             3           4
     var parseHexFloat = function(s) {
         var m = RE_HEXFLOAT.exec(s);
         if (!m) return NaN;

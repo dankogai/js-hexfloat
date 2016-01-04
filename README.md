@@ -29,7 +29,7 @@ also available as `Number.parseHexFloat()`.
 `RegExp` object used in `parseHexFloat`:
 
 ````javascript
-/([\+\-]?)0x([0-9A-F]+).?([0-9A-F]*)p([\+\-]?[0-9]*)/i
+/([\+\-]?)0x([0-9A-F]+)\.?([0-9A-F]*)p([\+\-]?[0-9]*)/i
 ````
 
 ### `Number.prototype.toHexString()`
