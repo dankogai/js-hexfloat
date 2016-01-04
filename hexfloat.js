@@ -19,21 +19,17 @@
         var exponent = (m[4]|0) - 4*m[3].length;
         return mantissa * Math.pow(2, exponent);
     };
-    var toHexString = function(canonical) {
+    var toHexString = function() {
         var sign = this < 0 ? '-' : '';
-        if (!canonical) {
-            return sign + '0x' + Math.abs(this).toString(16) + 'p0';
+        var a = Math.abs(this);
+        var p = 0;
+        if (a < 1) {
+            while (a < 1) { a *= 2; p-- }
         } else {
-            var a = Math.abs(this);
-            var p = 0;
-            if (a < 1) {
-                while (a < 1) { a *= 2; p-- }
-            } else {
-                while (a > 2) { a /= 2; p++ }
-            }
-            var es = p < 0 ? '' : '+';
-            return sign + '0x' + a.toString(16) + 'p' + es + p.toString(10);
+            while (a > 2) { a /= 2; p++ }
         }
+        var es = p < 0 ? '' : '+';
+        return sign + '0x' + a.toString(16) + 'p' + es + p.toString(10);
     };
     // install
     [

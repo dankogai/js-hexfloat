@@ -31,12 +31,10 @@ describe('Hexadecimal Float', function () {
        is(parseHexFloat(Math.E.toHexString()), Math.E));
     it('0xdead.beefp0 == '+dead_beef,
        is(parseHexFloat('0xdead.beefp0'), dead_beef));
-    it('dead_beef == 0xdead.beefp0',
-       is((dead_beef).toHexString(), '0xdead.beefp0'));
-    it('('+dead_beef+').toHexString(true) == 0x1.bd5b7ddep+15',
-       is((dead_beef).toHexString(true), '0x1.bd5b7ddep+15'));
-    it('(1/'+dead_beef+')toHexString(true) == 0x1.264eb565bf921p-16',
-       is((1/dead_beef).toHexString(true), '0x1.264eb565bf921p-16'));
+    it('('+dead_beef+').toHexString() == 0x1.bd5b7ddep+15',
+       is((dead_beef).toHexString(), '0x1.bd5b7ddep+15'));
+    it('(1/'+dead_beef+')toHexString() == 0x1.264eb565bf921p-16',
+       is((1/dead_beef).toHexString(), '0x1.264eb565bf921p-16'));
     it('0xdead.beefp0 == 0x1.bd5b7ddep+15',
        is(parseHexFloat('0xdead.beefp0'), parseHexFloat('0x1.bd5b7ddep+15')));
     it('-0x1p-42 == -Math.pow(2, -42)',
