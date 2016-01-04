@@ -2,7 +2,7 @@
 
 # js-hexfloat
 
-Rudimentary C99 Hexadecimal Float Support in JS
+Rudimentary C99 Hexadecimal Floating Point Support in JS
 
 ## SYNOPSIS
 
