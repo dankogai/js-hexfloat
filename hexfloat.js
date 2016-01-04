@@ -12,7 +12,7 @@
     var parseHexFloat = function(s) {
         //      1          2           3           4        5
         var m =
-            (/^([\+\-]?)0x([0-9A-Z]+).([0-9A-Z]+)p([\+\-]?)([0-9]+)/i)
+            (/^([\+\-]?)0x([0-9A-Z]+).?([0-9A-Z]*)p([\+\-]?)([0-9]*)/i)
             .exec(s);
         if (!m) return NaN;
         var sign = m[1] == '-' ? -1 : 1;
@@ -21,9 +21,21 @@
         var exponent = esign * (m[5]|0) - 4*m[3].length;
          return sign * mantissa * Math.pow(2, exponent);
     };
-    var toHexString = function() {
+    var toHexString = function(canonical) {
         var sign = this < 0 ? '-' : '';
-        return sign + '0x' + Math.abs(this).toString(16) + 'p0';
+        if (!canonical) {
+            return sign + '0x' + Math.abs(this).toString(16) + 'p0';
+        } else {
+            var a = Math.abs(this);
+            var p = 0;
+            if (a < 0.5) {
+                while (a < 0.5) { a *= 2; p-- }
+            } else {
+                while (a > 2)   { a /= 2; p++ }
+            }
+            var es = p < 0 ? '-' : '+';
+            return sign + '0x' + a.toString(16) + 'p' + es + p.toString(10);
+        }
     };
     // install
     [

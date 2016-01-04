@@ -34,9 +34,13 @@ describe('Hexadecimal Float', function () {
        is(G.parseHexFloat('0xdead.beefp0'), 57005.7458343505859375));
     it('57005.7458343505859375 == 0xdead.beefp0',
        is((57005.7458343505859375).toHexString(), '0xdead.beefp0'));
+    it('(57005.7458343505859375).toHexString(true)',
+       is((57005.7458343505859375).toHexString(true), '0x1.bd5b7ddep+15'));
     it('0xdead.beefp0 == 0x1.bd5b7ddep+15',
        is(G.parseHexFloat('0xdead.beefp0'),
           G.parseHexFloat('0x1.bd5b7ddep+15')));
+    it('-0x1p-42 == -Math.pow(2, -42)',
+        is(G.parseHexFloat('-0x1p-42'), -Math.pow(2, -42)));
     it('isNaN(parseHexFloat("nonsense"))',
        is(isNaN(G.parseHexFloat('nonsense')), true));
 });
