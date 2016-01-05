@@ -1,5 +1,5 @@
 /*
- * $Id: hexfloat.js,v 0.3 2016/01/04 17:53:08 dankogai Exp dankogai $
+ * $Id: hexfloat.js,v 0.4 2016/01/05 07:13:22 dankogai Exp dankogai $
  *
  *  Licensed under the MIT license.
  *  http://www.opensource.org/licenses/mit-license.php
@@ -9,11 +9,15 @@
     if (! Object.defineProperty) {
         throw Error("Object.defineProperty missing");
     }
-    var RE_HEXFLOAT =
-        /([\+\-]?)0x([0-9A-F]+)\.?([0-9A-F]*)p([\+\-]?[0-9]*)/i;
+    var pat_hexfloat  =
+        '([\+\-]?)0x([0-9A-F]+)\.?([0-9A-F]*)p([\+\-]?[0-9]*)';
     //   1          2             3           4
-    var parseHexFloat = function(s) {
-        var m = RE_HEXFLOAT.exec(s);
+    var RE_HEXFLOAT   = new RegExp(pat_hexfloat, 'i');
+    var RE_HEXFLOAT_G = new RegExp(pat_hexfloat, 'gi');
+    var parseHexFloat = function() {
+        var m = arguments.length < 2
+            ? RE_HEXFLOAT.exec(arguments[0])
+            : Array.from(arguments);
         if (!m) return NaN;
         var mantissa = parseInt(m[1] + m[2] + m[3], 16);
         var exponent = (m[4]|0) - 4*m[3].length;
@@ -33,9 +37,10 @@
     };
     // install
     [
-        [ global, 'parseHexFloat', parseHexFloat],
-        [ Number, 'parseHexFloat', parseHexFloat],
-        [ global, 'RE_HEXFLOAT',   RE_HEXFLOAT],
+        [ global, 'parseHexFloat', parseHexFloat ],
+        [ Number, 'parseHexFloat', parseHexFloat ],
+        [ global, 'RE_HEXFLOAT',   RE_HEXFLOAT ],
+        [ global, 'RE_HEXFLOAT_G', RE_HEXFLOAT_G ],
         [ Number.prototype, 'toHexString', toHexString ]
     ].forEach(function(a){
         var o = a[0], k = a[1], v = a[2];

@@ -1,12 +1,15 @@
 /*
- * $Id: test.js,v 0.2 2016/01/04 17:52:54 dankogai Exp dankogai $
+ * $Id: test.js,v 0.3 2016/01/05 07:13:40 dankogai Exp dankogai $
  *
  * use mocha to test me
  * http://visionmedia.github.com/mocha/
  */
 if (this['window'] !== this) {
     assert = require("assert");
-    parseHexFloat = require('../hexfloat.js').parseHexFloat;
+    G = require('../hexfloat.js');
+    parseHexFloat = G.parseHexFloat;
+    RE_HEXFLOAT = G.RE_HEXFLOAT;
+    RE_HEXFLOAT_G = G.RE_HEXFLOAT_G;
 }
 var is = function (a, e, m) {
     return function () {
@@ -15,6 +18,8 @@ var is = function (a, e, m) {
 };
 
 var dead_beef = 57005.7458343505859375;
+var src = 'e=0x1.5bf0a8b145769p+1, pi=0x1.921fb54442d18p+1';
+var dst = 'e=2.718281828459045, pi=3.141592653589793';
 
 describe('Hexadecimal Float', function () {
     it('Math.PI == 0x1.921fb54442d18p+1',
@@ -49,4 +54,6 @@ describe('Hexadecimal Float', function () {
        is(parseHexFloat('0x1.fffffffffffffp+1023'), Number.MAX_VALUE));
     it('Number.MAX_VALUE.toHexString()',
        is(Number.MAX_VALUE.toHexString(), '0x1.fffffffffffffp+1023'));
+    it('str.replace(RE_HEXFLOAT_G, parseHexFloat)',
+       is(src.replace(RE_HEXFLOAT_G, parseHexFloat), dst));
 });
