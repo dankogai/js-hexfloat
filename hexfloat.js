@@ -17,7 +17,7 @@
     var parseHexFloat = function() {
         var m = arguments.length < 2
             ? RE_HEXFLOAT.exec(arguments[0])
-            : Array.from(arguments);
+            : arguments;
         if (!m) return NaN;
         var mantissa = parseInt(m[1] + m[2] + m[3], 16);
         var exponent = (m[4]|0) - 4*m[3].length;
