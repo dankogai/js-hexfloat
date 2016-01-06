@@ -1,6 +1,6 @@
 {
   "name": "js-hexfloat",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Rudimentary C99 Hexadecimal Floating Point Support in JS",
   "main": "hexfloat.js",
   "directories": {
