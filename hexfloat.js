@@ -51,4 +51,4 @@
             configurable: true
         })
     });
-})(this);
+})(typeof root === 'object' ? root : this);

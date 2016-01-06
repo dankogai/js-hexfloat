@@ -6,10 +6,7 @@
  */
 if (this['window'] !== this) {
     assert = require("assert");
-    G = require('../hexfloat.js');
-    parseHexFloat = G.parseHexFloat;
-    RE_HEXFLOAT = G.RE_HEXFLOAT;
-    RE_HEXFLOAT_G = G.RE_HEXFLOAT_G;
+    require('../hexfloat.js');
 }
 var is = function (a, e, m) {
     return function () {
