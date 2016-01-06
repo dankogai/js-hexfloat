@@ -42,7 +42,7 @@ Unfortunately `text.replace(RE_HEXFLOAT, parseHexFloat, 'g')` is not standard so
 `RegExp` object used in `parseHexFloat`:
 
 ````javascript
-/([\+\-]?)0x([0-9A-F]+)\.?([0-9A-F]*)p([\+\-]?[0-9]*)/i
+/([\+\-]?)0x([0-9A-F]+)\.?([0-9A-F]*)p([\+\-]?[0-9]+)/i
 ````
 
 ### `RE_HEXFLOAT_G`

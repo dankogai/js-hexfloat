@@ -10,7 +10,7 @@
         throw Error("Object.defineProperty missing");
     }
     var pat_hexfloat  =
-        '([\+\-]?)0x([0-9A-F]+)\.?([0-9A-F]*)p([\+\-]?[0-9]*)';
+        '([\+\-]?)0x([0-9A-F]+)\.?([0-9A-F]*)p([\+\-]?[0-9]+)';
     //   1          2             3           4
     var RE_HEXFLOAT   = new RegExp(pat_hexfloat, 'i');
     var RE_HEXFLOAT_G = new RegExp(pat_hexfloat, 'gi');
