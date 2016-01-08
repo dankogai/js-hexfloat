@@ -28,9 +28,9 @@
         var a = Math.abs(this);
         var p = 0;
         if (a < 1) {
-            while (a < 1) { a *= 2; p-- }
+            while (a < 1)  { a *= 2; p-- }
         } else {
-            while (a > 2) { a /= 2; p++ }
+            while (a >= 2) { a /= 2; p++ }
         }
         var es = p < 0 ? '' : '+';
         return sign + '0x' + a.toString(16) + 'p' + es + p.toString(10);
