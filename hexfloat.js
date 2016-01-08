@@ -1,6 +1,4 @@
 /*
- * $Id: hexfloat.js,v 0.4 2016/01/05 07:13:22 dankogai Exp dankogai $
- *
  *  Licensed under the MIT license.
  *  http://www.opensource.org/licenses/mit-license.php
  */

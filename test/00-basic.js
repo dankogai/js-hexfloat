@@ -1,6 +1,4 @@
 /*
- * $Id: 00-basic.js,v 0.4 2016/01/08 03:58:34 dankogai Exp dankogai $
- *
  * use mocha to test me
  * http://visionmedia.github.com/mocha/
  */
@@ -63,7 +61,7 @@ describe('Extreme', function () {
        is((-1.0*0.0).toHexString(), '-0x0p+0'));
     it('parseHexFloat("inf") == ' + 1/0,
       is(parseHexFloat('inf'), 1/0));
-    it('(1/0).toHexString() == "-inf"',
+    it('(1/0).toHexString() == "inf"',
        is((-1/0).toHexString(), '-inf'));
     it('parseHexFloat("-inf") == ' + -1/0,
       is(parseHexFloat('-inf'), -1/0));

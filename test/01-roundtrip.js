@@ -1,6 +1,4 @@
 /*
- * $Id: 01-roundtrip.js,v 0.2 2016/01/08 04:03:25 dankogai Exp dankogai $
- *
  * use mocha to test me
  * http://visionmedia.github.com/mocha/
  */
