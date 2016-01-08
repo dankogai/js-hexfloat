@@ -18,12 +18,23 @@
         var m = arguments.length < 2
             ? RE_HEXFLOAT.exec(arguments[0])
             : arguments;
-        if (!m) return NaN;
+        if (!m) {
+            var mx = (/^([\+\-]?)inf(?:inity)?/i).exec(arguments[0]);
+            if (!mx) return NaN;
+            return mx[1] == '-' ? -1/0 : 1/0;
+        }
         var mantissa = parseInt(m[1] + m[2] + m[3], 16);
         var exponent = (m[4]|0) - 4*m[3].length;
         return mantissa * Math.pow(2, exponent);
     };
     var toHexString = function() {
+        if (this == 0.0) {
+            return (1/0 !== 1/this ? '-' : '') + '0x0p+0';
+        } else if (isNaN(this)) {
+            return 'nan';
+        }else if (!isFinite(this)) {
+            return (this < 0 ? '-' : '') + 'inf';
+        } 
         var sign = this < 0 ? '-' : '';
         var a = Math.abs(this);
         var p = 0;
