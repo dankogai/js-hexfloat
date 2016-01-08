@@ -1,5 +1,5 @@
 /*
- * $Id: test.js,v 0.3 2016/01/05 07:13:40 dankogai Exp dankogai $
+ * $Id: 00-basic.js,v 0.4 2016/01/08 03:58:34 dankogai Exp dankogai $
  *
  * use mocha to test me
  * http://visionmedia.github.com/mocha/
