@@ -26,15 +26,19 @@
         return mantissa * Math.pow(2, exponent);
     };
     var toHexString = function() {
-        if (this == 0.0) {
-            return (1/0 !== 1/this ? '-' : '') + '0x0p+0';
-        } else if (isNaN(this)) {
+        if (isNaN(this)) {
             return 'nan';
-        }else if (!isFinite(this)) {
-            return (this < 0 ? '-' : '') + 'inf';
-        } 
-        var sign = this < 0 ? '-' : '';
-        var a = Math.abs(this);
+        }
+        var that = +this;
+        if (Object.is(that, +0.0)) {
+            return '0x0p+0';
+        } else if (Object.is(that, -0.0)) {
+            return '-0x0p+0';
+        } else if (!isFinite(that)) {
+            return (that < 0 ? '-' : '') + 'inf';
+        }
+        var sign = that < 0 ? '-' : '';
+        var a = Math.abs(that);
         var p = 0;
         if (a < 1) {
             while (a < 1)  { a *= 2; p-- }
