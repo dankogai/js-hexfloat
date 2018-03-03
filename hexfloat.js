@@ -64,4 +64,4 @@
             configurable: true
         })
     });
-})(typeof root === 'object' ? root : this);
+})(typeof global === 'object' ? global : this);
