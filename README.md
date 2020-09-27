@@ -81,6 +81,8 @@ And `abs(-0x1p-53)` is `DBL_EPSILON`.
 ## SEE ALSO
 
 * http://www.exploringbinary.com/hexadecimal-floating-point-constants/
+* https://github.com/dankogai/js-sion
+* https://dankogai.github.com/SION/
 
 ## Appendix: HexFloat in Other Languages
 
