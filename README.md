@@ -30,10 +30,10 @@ From version 0.4.0, you can use `parseHexFloat` with `String.prototype.replace`.
 
 ````javascript
 var text = 'e=0x1.5bf0a8b145769p+1, pi=0x1.921fb54442d18p+1';
-text.replace(RE_HEXFLOAT_G, parseHexFloat) // 'e=2.718281828459045, pi=3.141592653589793';
+text.replace(RE_HEXFLOAT_G, parseHexFloat); // 'e=2.718281828459045, pi=3.141592653589793';
 ````
 
-In the case above, parseHexFloat does not apply regexp by itself.  Instead it just takes its `arguments` as the matched result.
+In the case above, `parseHexFloat` does not apply regexp by itself.  Instead it just takes its `arguments` as the matched result.
 
 Unfortunately `text.replace(RE_HEXFLOAT, parseHexFloat, 'g')` is not standard so `RE_HEXFLOAT_G` is added.
 
