@@ -1,30 +1,31 @@
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="https://raw.github.com/visionmedia/mocha/master/mocha.css" />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="https://raw.github.com/visionmedia/mocha/master/mocha.js"></script>
-        <script>
-            mocha.setup('bdd');
-        </script>
-        <script src="../hexfloat.js"></script>
-        <script>
-            var assert = function(expr, msg) {
-                if (!expr) throw new Error(msg || 'failed');
-            };      
-            assert.equal = function(a, b, msg) {
-                 if (a !== b) throw new Error(msg || ('failed : '+a+','+b));
-            };
-        </script>
-        <script src="./00-basic.js"></script>
-        <script src="./01-roundtrip.js"></script>
-        <script>
-            $(function() {
-                mocha.run();
-            });
-        </script>
-    </head>
-    <body>
-        <div id="mocha"></div>
-    </body>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Mocha Tests js-hexfloat</title>
+    <link href="https://unpkg.com/mocha@4.0.1/mocha.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="mocha"></div>
+    <script src="https://unpkg.com/mocha@4.0.1/mocha.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+    <script>
+        var assert = function (expr, msg) {
+            if (!expr) throw new Error(msg || 'failed');
+        };
+        assert.equal = function (a, b, msg) {
+            if (a !== b) throw new Error(msg || ('failed : ' + a + ',' + b));
+        };
+    </script>
+    <script src="../hexfloat.js"></script>
+    <script src="./00-basic.js"></script>
+    <script src="./01-roundtrip.js"></script>
+    <script>
+        mocha.checkLeaks();
+        mocha.run();
+    </script>
+</body>
 </html>
