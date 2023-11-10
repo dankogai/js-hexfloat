@@ -1,4 +1,4 @@
-[![build status](https://secure.travis-ci.org/dankogai/js-hexfloat.png)](http://travis-ci.org/dankogai/js-hexfloat)
+[![CI via GitHub Actions](https://github.com/dankogai/js-hexfloat/actions/workflows/node.js.yml/badge.svg)](https://github.com/dankogai/js-hexfloat/actions/workflows/node.js.yml)
 
 # js-hexfloat
 
