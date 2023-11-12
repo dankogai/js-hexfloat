@@ -37,6 +37,8 @@ describe('Basic', function () {
        is((1/dead_beef).toHexString(), '0x1.264eb565bf921p-16'));
     it('0xdead.beefp0 == 0x1.bd5b7ddep+15',
        is(parseHexFloat('0xdead.beefp0'), parseHexFloat('0x1.bd5b7ddep+15')));
+    it('0xdeadbeef == 0xDEADBEEF',
+       is(parseHexFloat('0xdeadbeef'), parseInt(0xDEADBEEF)))
     it('-0x1p-42 == -Math.pow(2, -42)',
         is(parseHexFloat('-0x1p-42'), -Math.pow(2, -42)));
     it('0x1p-1074 == Number.MIN_VALUE',

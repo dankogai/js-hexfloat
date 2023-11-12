@@ -8,8 +8,8 @@
         throw Error("Object.defineProperty missing");
     }
     var pat_hexfloat  =
-        '([\+\-]?)0x([0-9A-F]+)\.?([0-9A-F]*)p([\+\-]?[0-9]+)';
-    //   1          2             3           4
+        '([\+\-]?)0x([0-9A-F]+)(?:\.?([0-9A-F]*)p([\+\-]?[0-9]+))?';
+    //   1          2                3           4
     var RE_HEXFLOAT   = new RegExp(pat_hexfloat, 'i');
     var RE_HEXFLOAT_G = new RegExp(pat_hexfloat, 'gi');
     var parseHexFloat = function() {
@@ -21,6 +21,7 @@
             if (!mx) return NaN;
             return mx[1] == '-' ? -1/0 : 1/0;
         }
+        if (!m[3] && !m[4]) return parseInt(m[0]);
         var mantissa = parseInt(m[1] + m[2] + m[3], 16);
         var exponent = (m[4]|0) - 4*m[3].length;
         return mantissa * Math.pow(2, exponent);
